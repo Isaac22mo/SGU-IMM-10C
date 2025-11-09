@@ -1,35 +1,37 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { getUsers } from "./services/UserService";
+import UserTable from "./modules/users/UserTable.jsx";
+import { Container, Button } from "react-bootstrap";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [users, setUsers] = useState([]);
+  const navigate = useNavigate();
+
+  const fetchUsers = async () => {
+    try {
+      const res = await getUsers();
+      setUsers(res.data);
+    } catch (err) {
+      console.error("Error al cargar usuarios:", err);
+    }
+  };
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <Container className="mt-5">
+      <div className="d-flex justify-content-between align-items-center mb-4">
+        <h2 className="fw-bold">Gestión de Usuarios</h2>
+        <Button variant="primary" onClick={() => navigate("/form")}>
+          Registrar Usuario
+        </Button>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+      <UserTable users={users} fetchUsers={fetchUsers} />
+    </Container>
+  );
 }
 
-export default App
+export default App;
