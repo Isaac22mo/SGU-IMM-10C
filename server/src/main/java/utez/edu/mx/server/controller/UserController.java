@@ -8,7 +8,7 @@ import utez.edu.mx.server.service.UserService;
 import utez.edu.mx.server.utils.ApiResponse;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/users/")
 @CrossOrigin("*")
 public class UserController {
 

@@ -11,27 +11,30 @@ import javax.sql.DataSource;
 public class DBConnection {
 
     @Value("${db.name}")
-    private String name;
+    public String name;
 
     @Value("${db.host}")
-    private String host;
+    public String host;
 
     @Value("${db.port}")
-    private String port;
+    public String port;
 
     @Value("${db.pass}")
-    private String pass;
+    public String pass;
 
     @Value("${db.user}")
-    private String user;
+    public String user;
+
 
     @Bean
-    public DataSource getDBConnection() {
+    public DataSource getDBConneccion(){
         DriverManagerDataSource source = new DriverManagerDataSource();
         source.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        source.setUrl("jdbc:mysql://" + host + ":" + port + "/" + name + "?useSSL=false&serverTimezone=UTC");
-        source.setUsername(user);
+
+        source.setUrl("jdbc:mysql://" + host + ":" + port + "/" + name);
         source.setPassword(pass);
+        source.setUsername(user);
+
         return source;
     }
 }
