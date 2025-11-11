@@ -7,8 +7,8 @@ export default function UserForm() {
   const [user, setUser] = useState({
     nombre: "",
     apellido: "",
-    correoElectronico: "",
-    numeroTelefono: "",
+    correo: "",
+    telefono: "",
   });
 
   const navigate = useNavigate();
@@ -63,11 +63,11 @@ export default function UserForm() {
           </Row>
 
           <Form.Group className="mb-3">
-            <Form.Label>Correo Electrónico</Form.Label>
+            <Form.Label>Correo</Form.Label>
             <Form.Control
               type="email"
-              name="correoElectronico"
-              value={user.correoElectronico}
+              name="correo"
+              value={user.correo}
               onChange={handleChange}
               placeholder="correo@ejemplo.com"
               required
@@ -75,11 +75,11 @@ export default function UserForm() {
           </Form.Group>
 
           <Form.Group className="mb-4">
-            <Form.Label>Número de Teléfono</Form.Label>
+            <Form.Label>Teléfono</Form.Label>
             <Form.Control
               type="text"
-              name="numeroTelefono"
-              value={user.numeroTelefono}
+              name="telefono"
+              value={user.telefono}
               onChange={handleChange}
               placeholder="Ej. 555-123-4567"
               required

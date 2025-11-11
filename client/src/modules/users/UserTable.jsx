@@ -36,8 +36,8 @@ export default function UserTable({ users, fetchUsers }) {
             <tr key={u.id}>
               <td>{u.nombre}</td>
               <td>{u.apellido}</td>
-              <td>{u.correoElectronico}</td>
-              <td>{u.numeroTelefono}</td>
+              <td>{u.correo}</td>
+              <td>{u.telefono}</td>
               <td>
                 <Button
                   variant="danger"

@@ -11,7 +11,7 @@ function App() {
   const fetchUsers = async () => {
     try {
       const res = await getUsers();
-      setUsers(res.data);
+      setUsers(res); 
     } catch (err) {
       console.error("Error al cargar usuarios:", err);
     }
